@@ -1,1 +1,4 @@
 phpMyAdmin
+.idea
+cache/*.volt.php
+cache/*.php

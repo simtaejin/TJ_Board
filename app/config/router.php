@@ -6,13 +6,13 @@ $router = $di->getRouter();
 
 $router->setDefaultModule("frontend");
 
-$router->add('/frontend', [
+$router->add('/', [
 	'module'     => 'frontend',
 	'controller' => 'index',
 	'action'     => 'index',
 ]);
 
-$router->add("/backend", [
+$router->add("/dashboard", [
 	'module'     => 'backend',
 	'controller' => 'index',
 	'action'     => 'index',
