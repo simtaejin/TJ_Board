@@ -26,8 +26,8 @@ class Module implements ModuleDefinitionInterface
 
         $loader->registerNamespaces(
             [
-                'Multiple\Backend\Controllers' => APP_PATH . '/Backend/controllers/',
-                'Multiple\Backend\Models' => APP_PATH . '/Backend/models/',
+                'Multiple\Backend\Controllers' => APP_PATH . '/backend/controllers/',
+                'Multiple\Backend\Models' => APP_PATH . '/backend/models/',
             ]
         );
 
@@ -62,7 +62,7 @@ class Module implements ModuleDefinitionInterface
 
 			$view = new View();
 			$view->setDI($this);
-			$view->setViewsDir(APP_PATH . '/Backend/views/');
+			$view->setViewsDir(APP_PATH . '/backend/views/');
 
 			$view->registerEngines([
 				'.volt' => function ($view) {
