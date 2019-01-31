@@ -22,16 +22,7 @@ class Module implements ModuleDefinitionInterface
      */
     public function registerAutoloaders(DiInterface $di = null)
     {
-        $loader = new Loader();
-
-        $loader->registerNamespaces(
-            [
-                'Multiple\Backend\Controllers' => APP_PATH . '/backend/controllers/',
-                'Multiple\Backend\Models' => APP_PATH . '/backend/models/',
-            ]
-        );
-
-        $loader->register();
+ 
     }
 
     /**

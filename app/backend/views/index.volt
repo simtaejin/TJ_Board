@@ -14,25 +14,25 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="/public/bootstrap/jquery.min.js"><\/script>')</script>
-    <script src="/public/bootstrap/js/bootstrap.min.js"></script>
+    <script>window.jQuery || document.write('<script src="<?php echo $_SERVER['CONTEXT_PREFIX'];?>/public/bootstrap/jquery.min.js"><\/script>')</script>
+    <script src="<?php echo $_SERVER['CONTEXT_PREFIX'];?>/public/bootstrap/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <!--<script src="/public/bootstrap/js/ie10-viewport-bug-workaround.js"></script>-->
+    <!--<script src="<?php echo $_SERVER['CONTEXT_PREFIX'];?>/public/bootstrap/js/ie10-viewport-bug-workaround.js"></script>-->
 
     <!-- Bootstrap core CSS -->
-    <link href="/public/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo $_SERVER['CONTEXT_PREFIX'];?>/public/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <!--<link href="/public/bootstrap/css/ie10-viewport-bug-workaround.css" rel="stylesheet">-->
+    <!--<link href="<?php echo $_SERVER['CONTEXT_PREFIX'];?>/public/bootstrap/css/ie10-viewport-bug-workaround.css" rel="stylesheet">-->
 
     <!-- Custom styles for this template -->
-    <link href="/public/bootstrap/navbar-fixed-top.css" rel="stylesheet">
-    <!--<link href="/public/bootstrap/sticky-footer-navbar.css" rel="stylesheet">-->
-    <link href="/public/bootstrap/justified-nav.css" rel="stylesheet">
+    <link href="<?php echo $_SERVER['CONTEXT_PREFIX'];?>/public/bootstrap/navbar-fixed-top.css" rel="stylesheet">
+    <!--<link href="<?php echo $_SERVER['CONTEXT_PREFIX'];?>/public/bootstrap/sticky-footer-navbar.css" rel="stylesheet">-->
+    <link href="<?php echo $_SERVER['CONTEXT_PREFIX'];?>/public/bootstrap/justified-nav.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="/public/bootstrap/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="/public/bootstrap/ie-emulation-modes-warning.js"></script>
+    <!--[if lt IE 9]><script src="<?php echo $_SERVER['CONTEXT_PREFIX'];?>/public/bootstrap/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="<?php echo $_SERVER['CONTEXT_PREFIX'];?>/public/bootstrap/ie-emulation-modes-warning.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
