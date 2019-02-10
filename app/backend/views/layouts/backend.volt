@@ -23,7 +23,7 @@
                         <li><a href="<?= $this->url->get('setup/board/') ?>">게시판 설정</a></li>
                     </ul>
                 </li>
-                <li><a href="<?= $this->url->get('member/') ?>">회원</a></li>
+                <li><a href="<?= $this->url->get('dashboard/member/') ?>">회원</a></li>
                 <!-- <li><a href="<?= $this->url->get('board/board/') ?>">게시판</a></li> -->
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">게시판 <span class="caret"></span></a>
@@ -40,7 +40,7 @@
                 <li><a href="<?= $this->url->get('member/new') ?>">회원가입</a></li>
                 {% else %}
                 <li><a href="<?= $this->url->get('loginout/dologout') ?>">로그아웃</a></li>
-                <li><a href="<?= $this->url->get('member/update/') ?>{{ userId }}">정보수정</a></li>
+                <li><a href="<?= $this->url->get('dashboard/member/update/') ?>{{ userId }}">정보수정</a></li>
                 {% endif %}
             </ul>
         </div><!--/.nav-collapse -->

@@ -12,7 +12,7 @@ class ControllerBase extends Controller
     {
 		$this->view->setTemplateAfter('backend');
 
-        //$this->view->setVar("userId", $this->session->get("id"));
+        $this->view->setVar("userId", $this->session->get("id"));
         $this->view->setVar("userId", "test");
         
         $BaseBoard = new \Multiple\Backend\Models\SetupBoard();
