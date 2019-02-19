@@ -15,7 +15,7 @@ class SetupController extends ControllerBase
     }
     public function indexAction()
     {
-     
+
     }
     public function boardAction()
     {
@@ -26,7 +26,7 @@ class SetupController extends ControllerBase
             $numberPage = $this->dispatcher->getParam('page');
         }
         $parameters["order"] = "idx desc";
-        $sb = new SetupBoard();
+        $sb = new \Multiple\Backend\Models\SetupBoard();
         $sb->setSource("board");
         $sb_data = $sb->find($parameters);
         $paginator = new Paginator([
@@ -40,8 +40,8 @@ class SetupController extends ControllerBase
     {
         if ($this->request->isPost()) {
             $this->view->disable();
-            $this->component->helper->csrf("setup/board/create/");
-            $board = new SetupBoard();
+            $this->component->ComponentsPlugin->csrf("/dashboard/setup/board/create");
+            $board = new \Multiple\Backend\Models\SetupBoard();
             $board->setSource("board");
             $board->id = $this->request->getPost("id");
             $board->name = $this->request->getPost("name");
@@ -67,22 +67,22 @@ class SetupController extends ControllerBase
                                 new Column('title',['type'=> Column::TYPE_VARCHAR,'size'=> 255,'notNull' => true,]),
                                 new Column('content',['type'=> Column::TYPE_TEXT,]),
                                 new Column('hits',['type'=> Column::TYPE_INTEGER,'size'=> 11,'notNull'=> true,'default' => 0,]),
-                                new Column('created',['type'=> Column::TYPE_DATETIME,'notNull'=> true,'default' => '0000-00-00 00:00:00',]),
-                                new Column('updated',['type'=> Column::TYPE_DATETIME,'notNull'=> true,'default' => '0000-00-00 00:00:00',]),
+                                new Column('created',['type'=> Column::TYPE_DATETIME,'notNull'=> true,'default' => 'CURRENT_TIMESTAMP',]),
+                                new Column('updated',['type'=> Column::TYPE_DATETIME,'notNull'=> true,'default' => 'CURRENT_TIMESTAMP',]),
                             ]
                         ]
                     );
                 }
-                if (!is_dir($this->config->application->dataDir . "/board/" . $board->id)) {
-                    mkdir($this->config->application->dataDir, 0777);
-                    mkdir($this->config->application->dataDir . "/board/", 0777);
-                    mkdir($this->config->application->dataDir . "/board/" . $board->id, 0777);
+                if (!is_dir($this->config->application->storageDir . "/board/" . $board->id)) {
+                    //mkdir($this->config->application->storageDir, 0777);
+                    //mkdir($this->config->application->storageDir . "/board/", 0777);
+                    mkdir($this->config->application->storageDir . "/board/" . $board->id, 0777);
                 }
-                if (!is_dir($this->config->application->dataDir . "/board/" . $board->id."/thumbnail/")) {
-                    mkdir($this->config->application->dataDir . "/board/" . $board->id."/thumbnail/", 0777);
+                if (!is_dir($this->config->application->storageDir . "/board/" . $board->id."/thumbnail/")) {
+                    mkdir($this->config->application->storageDir . "/board/" . $board->id."/thumbnail/", 0777);
                 }
             }
-            $this->component->helper->alert("게시판이 등록 되었습니다.", "/setup/board/");
+             $this->component->ComponentsPlugin->alert("게시판이 등록 되었습니다.", "/dashboard/setup/board/");
         }
         $_board_list = scandir($this->view->getViewsDir()."board/");
         foreach ($_board_list as $key => $value) {
@@ -98,8 +98,8 @@ class SetupController extends ControllerBase
       
         if ($this->request->isPost()) {
             $this->view->disable();
-            $this->component->helper->csrf("setup/board/create/");
-            $sb = new SetupBoard();
+            $this->component->ComponentsPlugin->csrf("/dashboard/setup/board/update");
+            $sb = new \Multiple\Backend\Models\SetupBoard();
             $sb->setSource("board");
             $this->request->get('idx');
             $sb_data = $sb->findFirstByIdx($idx);
@@ -115,9 +115,9 @@ class SetupController extends ControllerBase
                 }
                 return;
             }
-            $this->component->helper->alert("게시판이 수정 되었습니다.", "/setup/board/update/".$idx);
+            $this->component->ComponentsPlugin->alert("게시판이 수정 되었습니다.", "/setup/board/update/".$idx);
         } else {
-            $sb = new SetupBoard();
+            $sb = new \Multiple\Backend\Models\SetupBoard();
             $sb->setSource("board");
             $sb_data = $sb->findFirstByIdx($idx);
             $this->view->setVar("idx", $sb_data->idx);
@@ -139,7 +139,7 @@ class SetupController extends ControllerBase
     public function board_deleteAction()
     {
         $idx = $this->dispatcher->getParam('idx');
-        $sb = new SetupBoard();
+        $sb = new \Multiple\Backend\Models\SetupBoard();
         $sb->setSource("board");
         $sb_data = $sb->findFirstByIdx($idx);
         if (!$sb_data->delete()) {
@@ -149,6 +149,6 @@ class SetupController extends ControllerBase
             return;
         }
         $this->db->dropTable("board_".$sb_data->id);
-        $this->component->helper->alert("게시판이 삭제 되었습니다.", "/setup/board/");
+        $this->component->ComponentsPlugin->alert("게시판이 삭제 되었습니다.", "/setup/board/");
     }
 }

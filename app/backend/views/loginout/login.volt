@@ -5,7 +5,7 @@
 
 <div class="container">
 
-    <form class="form-signin" method="post" action="{{ url('dashboard/loginout/dologin') }}">
+    <form class="form-signin" method="post" action="{{ url('dashboard/dologin') }}">
         <input type="hidden" name="{{ security.getTokenKey() }}" value="{{ security.getToken() }}">
 
         <h2 class="form-signin-heading">Please sign in</h2>

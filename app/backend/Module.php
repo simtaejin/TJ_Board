@@ -8,8 +8,8 @@ use Phalcon\Mvc\View;
 use Phalcon\Mvc\View\Engine\Php as PhpEngine;
 use Phalcon\Mvc\View\Engine\Volt as VoltEngine;
 use Phalcon\DiInterface;
-use Phalcon\Events\Manager;
-use Phalcon\Mvc\Dispatcher;
+
+
 use Phalcon\Mvc\ModuleDefinitionInterface;
 
 
@@ -35,15 +35,15 @@ class Module implements ModuleDefinitionInterface
     {
         // Registering a dispatcher
         $di->set('dispatcher', function () {
-            $dispatcher = new Dispatcher();
-
-            $eventManager = new Manager();
-
+            $eventsManager = new \Phalcon\Events\Manager();
+            $eventsManager->attach("dispatch", new \Plugin\SecurityPlugin());
+            
+            $dispatcher = new \Phalcon\Mvc\Dispatcher();
             // Attach a event listener to the dispatcher (if any)
             // For example:
             // $eventManager->attach('dispatch', new \My\Awesome\Acl('Backend'));
 
-            $dispatcher->setEventsManager($eventManager);
+            $dispatcher->setEventsManager($eventsManager);
             $dispatcher->setDefaultNamespace('Multiple\Backend\Controllers\\');
             return $dispatcher;
         });

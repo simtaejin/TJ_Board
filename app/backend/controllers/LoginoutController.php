@@ -27,22 +27,23 @@ class LoginoutController extends ControllerBase
     public function dologinAction()
     {
         $this->view->disable();
-        //$this->component->helper->csrf("/loginout/login");
+        $this->component->ComponentsPlugin->csrf("/dashboard/login");
+
         $id = $this->request->getPost('inputId');
         $password = $this->request->getPost('inputPassword');
-        $member = Member::findFirstById($id);
+        $member = \Multiple\Backend\Models\Member::findFirstById($id);
         if ($member) {
             if ($this->security->checkHash($password, $member->password)) {
-                $login = Loginout::findFirstById($id);
+                $login = \Multiple\Backend\Models\Loginout::findFirstById($id);
                 $login->update();
                 $this->session->set('id', $member->id);
                 $this->session->set('role', $member->role);
-                $this->response->redirect("index");
+                $this->response->redirect("dashboard");
             } else {
-                $this->component->helper->alert("패스워드를 확인 하세요.", "/loginout/login");
+                $this->component->ComponentsPlugin->alert("패스워드를 확인 하세요.", "/dashboard/login");
             }
         } else {
-            $this->component->helper->alert("아이디 또는 패스워드를 확인 하세요.", "/loginout/login");
+            $this->component->ComponentsPlugin->alert("아이디 또는 패스워드를 확인 하세요.", "/dashboard/login");
         }
     }
     /**
@@ -51,6 +52,6 @@ class LoginoutController extends ControllerBase
     public function dologoutAction()
     {
         $this->session->destroy();
-        $this->response->redirect("loginout/login");
+        $this->response->redirect("dashboard/login");
     }
 }

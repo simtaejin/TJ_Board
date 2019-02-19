@@ -11,7 +11,6 @@ class MemberController extends ControllerBase
     {
         parent::initialize();
        $this->view->setVar("userId", $this->session->get("id"));
-		$this->view->setVar("userId", "test");
     }
 
     public function indexAction()
@@ -48,12 +47,11 @@ class MemberController extends ControllerBase
     {
         if ($this->request->isPost()) {
             $this->view->disable();
-
-            //$this->component->helper->csrf("member/create");
+             $this->component->ComponentsPlugin->csrf("/dashboard/member/create");
 
             $temp =  \Multiple\Backend\Models\Member::findFirstById($this->request->getPost("id"));
             if ($temp) {
-                //$this->component->helper->alert("이미 있는 ID 입니다.", "/member/");
+                 $this->component->ComponentsPlugin->alert("이미 있는 ID 입니다.", "/dashboard/member/");
             }
 
             $member = new \Multiple\Backend\Models\Member();
@@ -69,7 +67,7 @@ class MemberController extends ControllerBase
                 return;
             }
 
-            //$this->component->helper->alert("회원 등록 되었습니다.", "/member/");
+            $this->component->ComponentsPlugin->alert("회원 등록 되었습니다.", "/dashboard/member/");
         }
     }
 
@@ -78,7 +76,7 @@ class MemberController extends ControllerBase
         if ($this->request->isPost()) {
             $this->view->disable();
 
-            //$this->component->helper->csrf("member/update/" . $this->request->getPost("id"));
+            $this->component->ComponentsPlugin->csrf("/dashboard/member/update" . $this->request->getPost("id"));
 
             $member = \Multiple\Backend\Models\Member::findFirstById($this->request->getPost("id"));
             $member->password = $this->request->getPost("password");
@@ -91,7 +89,7 @@ class MemberController extends ControllerBase
                 return;
             }
 
-            //$this->component->helper->alert("회원 수정 되었습니다.", "/member/select/".$id);
+            $this->component->ComponentsPlugin->alert("회원 수정 되었습니다.", "/member/select/".$id);
         } else {
             $member = \Multiple\Backend\Models\Member::findFirstById($id);
 
@@ -112,7 +110,7 @@ class MemberController extends ControllerBase
             return;
         }
 
-        //$this->component->helper->alert("회원 삭제 되었습니다.", "/member/");
+        $this->component->ComponentsPlugin->alert("회원 삭제 되었습니다.", "/dashboard/member/");
     }
 
 }

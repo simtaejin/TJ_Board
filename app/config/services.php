@@ -112,3 +112,9 @@ $di->setShared('session', function () {
 
     return $session;
 });
+
+$di->setShared('component', function () {
+    $obj = new stdClass();
+    $obj->ComponentsPlugin = new \Plugin\ComponentsPlugin;
+    return $obj;
+});

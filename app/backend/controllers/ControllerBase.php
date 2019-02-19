@@ -13,7 +13,6 @@ class ControllerBase extends Controller
 		$this->view->setTemplateAfter('backend');
 
         $this->view->setVar("userId", $this->session->get("id"));
-        $this->view->setVar("userId", "test");
         
         $BaseBoard = new \Multiple\Backend\Models\SetupBoard();
                 
@@ -21,7 +20,7 @@ class ControllerBase extends Controller
         $BaseBoardDate = $BaseBoard->find(['order' =>'idx desc']);
         $this->BaseBoardDate = $BaseBoardDate;
         $this->view->setVar("bbd", $this->BaseBoardDate);
-        
+        $this->view->setVar("context_prefix", $_SERVER['CONTEXT_PREFIX']);
     }
 
     public function indexAction()

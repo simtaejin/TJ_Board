@@ -20,3 +20,10 @@ $loader->registerNamespaces(
         'Multiple\Backend\Models' => APP_PATH . '/backend/models/',
     ]
 )->register();
+
+$loader->registerClasses(
+    [
+        'Plugin\ComponentsPlugin' => $config->application['pluginsDir'].'ComponentsPlugin.php',
+        'Plugin\SecurityPlugin' => $config->application['pluginsDir'].'SecurityPlugin.php'
+    ]
+)->register();
